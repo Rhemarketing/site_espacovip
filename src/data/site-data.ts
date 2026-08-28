@@ -11,17 +11,17 @@ export const siteConfig: SiteConfig = {
   tradeName: "Edifício Espaço VIP",
   tagline: "Complexo Corporativo, Médico & Estúdio Vip Cast",
   description:
-    "O centro de excelência corporativa e médica em Ituiutaba. Estrutura inteligente com portaria digital, salas de alto padrão e localização nobre.",
+    "O centro de excelência corporativa e médica em Ituiutaba. Estrutura inteligente com 20 salas, 3 recepções, portaria digital com Face ID e estúdio Vip Cast.",
   url: "https://espacovipituiutaba.com.br",
   keywords: [
     "Espaço VIP Ituiutaba",
-    "Salas Comerciais",
-    "Consultórios Médicos",
+    "Salas Comerciais Ituiutaba",
+    "Consultórios Médicos Ituiutaba",
     "Vip Cast Podcast",
-    "Portaria Digital",
-    "Edifício Corporativo",
+    "Portaria Digital Face ID",
+    "Edifício Corporativo Ituiutaba",
   ],
-  ogImage: "/images/og-image.jpg",
+  ogImage: "/images/hero-building.jpg",
   contact: {
     address: {
       street: "Rua 20",
@@ -30,7 +30,7 @@ export const siteConfig: SiteConfig = {
       city: "Ituiutaba",
       state: "MG",
       zipCode: "38300-000",
-      reference: "Próximo aos principais centros comerciais e médicos da cidade",
+      reference: "Localização nobre e estratégica no coração comercial da cidade",
     },
     phone: "34999999999",
     phoneFormatted: "(34) 99999-9999",
@@ -41,7 +41,7 @@ export const siteConfig: SiteConfig = {
     email: "contato@espacovipituiutaba.com.br",
     scheduleHours: {
       reception: "Segunda a Sexta: 07:00 às 19:00 | Sábado: 08:00 às 12:00",
-      digitalAccess: "24 horas por dia, 7 dias por semana (com biometria/facial)",
+      digitalAccess: "24 horas por dia, 7 dias por semana (com Face ID e biometria)",
       parking: "Estacionamento com acesso facilitado",
     },
     socials: {
@@ -52,62 +52,131 @@ export const siteConfig: SiteConfig = {
   },
 };
 
-export const mainFeatures: Feature[] = [
+export interface InfrastructureItem {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  iconName: string;
+  highlightTag?: string;
+}
+
+export const infrastructureItems: InfrastructureItem[] = [
   {
-    id: "portaria-digital",
-    title: "Portaria Digital 24h",
-    subtitle: "Acesso Autônomo e Seguro",
+    id: "salas-andares",
+    title: "20 Salas em 2 Andares",
+    category: "Espaço Modular",
     description:
-      "Sistema biométrico e reconhecimento facial com liberação via QR Code para visitantes e clientes com total agilidade.",
-    iconName: "ShieldCheck",
-    badge: "Tecnologia",
-    category: "tecnologia",
-    stats: {
-      value: "24/7",
-      label: "Acesso Seguro",
-    },
-  },
-  {
-    id: "vip-cast-studio",
-    title: "Estúdio Vip Cast",
-    subtitle: "Produção Audiovisual Completa",
-    description:
-      "Estúdio acústico profissional equipado com microfones broadcast, iluminação de cinema e gravação multicâmera 4K.",
-    iconName: "Mic",
-    badge: "Exclusivo",
-    category: "estudio",
-    stats: {
-      value: "4K HDR",
-      label: "Qualidade de Gravação",
-    },
-  },
-  {
-    id: "salas-premium",
-    title: "Salas & Consultórios Sob Medida",
-    subtitle: "Arquitetura e Conforto",
-    description:
-      "Plantas flexíveis adaptáveis para consultórios médicos, odontológicos, escritórios de advocacia e empresas de tecnologia.",
+      "Plantas inteligentes e modulares preparadas para consultórios médicos, clínicas de estética, escritórios de advocacia, consultoria e empresas.",
     iconName: "Building2",
-    badge: "Alto Padrão",
-    category: "conforto",
-    stats: {
-      value: "100%",
-      label: "Personalizável",
-    },
+    highlightTag: "Alta Flexibilidade",
   },
   {
-    id: "polo-networking",
-    title: "Polo Médico e Corporativo",
-    subtitle: "Sinergia Profissional",
+    id: "recepcoes-climatizadas",
+    title: "3 Recepções Climatizadas",
+    category: "Conforto & Acolhimento",
     description:
-      "Ecossistema seleto que estimula networking qualificado entre profissionais da saúde, direito, finanças e inovação.",
-    iconName: "Users",
-    badge: "Comunidade VIP",
-    category: "exclusividade",
-    stats: {
-      value: "+40",
-      label: "Profissionais e Empresas",
-    },
+      "Salas de espera amplas e decoradas que eliminam a sensação de espera fria, oferecendo atendimento humanizado e acolhedor aos seus clientes.",
+    iconName: "Armchair",
+    highlightTag: "Lounge VIP",
+  },
+  {
+    id: "acessibilidade-pcd",
+    title: "Acessibilidade Plena (Normas PCD)",
+    category: "Inclusão & Conformidade",
+    description:
+      "Banheiros adaptados, portas dimensionadas e corredores amplos garantindo acesso seguro e confortável a todos os pacientes e visitantes.",
+    iconName: "Accessibility",
+    highlightTag: "100% Acessível",
+  },
+  {
+    id: "copa-cozinha",
+    title: "Copa e Cozinha Completa",
+    category: "Conveniência Exclusiva",
+    description:
+      "Espaço reservado e equipado para refeições, café e momentos de descompressão e networking exclusivo entre os condôminos.",
+    iconName: "Coffee",
+    highlightTag: "Uso dos Condôminos",
+  },
+  {
+    id: "climatizacao-conectividade",
+    title: "Climatização & Conectividade",
+    category: "Infraestrutura Técnica",
+    description:
+      "Ambientes 100% climatizados e infraestrutura de internet de alta velocidade em fibra óptica redundante para operação ininterrupta.",
+    iconName: "Wifi",
+    highlightTag: "Fibra Redundante",
+  },
+  {
+    id: "marketing-sensorial",
+    title: "Marketing Sensorial & Visual",
+    category: "Experiência de Marca",
+    description:
+      "Identidade olfativa exclusiva com aroma de prestígio e iluminação arquitetônica indireta que ativam gatilhos imediatos de bem-estar.",
+    iconName: "Sparkles",
+    highlightTag: "Ambiente Nobre",
+  },
+];
+
+export const infrastructureStats = [
+  { value: "20", label: "Salas Exclusivas", subtext: "Modulares e prontas" },
+  { value: "02", label: "Andares Corporativos", subtext: "Distribuição funcional" },
+  { value: "03", label: "Recepções Decoradas", subtext: "Climatizadas e confortáveis" },
+  { value: "+1.000m²", label: "Área Total", subtext: "Dedicada ao seu sucesso" },
+];
+
+export interface TechLayer {
+  id: string;
+  name: string;
+  badge: string;
+  tagline: string;
+  description: string;
+  iconName: string;
+  features: string[];
+}
+
+export const accessLayers: TechLayer[] = [
+  {
+    id: "face-id",
+    name: "Face ID Inteligente",
+    badge: "Reconhecimento Facial",
+    tagline: "Acesso em menos de 1 segundo",
+    description:
+      "Algoritmo biométrico avançado que reconhece profissionais e equipes cadastradas com máxima precisão, sem toque e com total segurança.",
+    iconName: "ScanFace",
+    features: [
+      "Reconhecimento sem contato físico",
+      "Leitura ultra-rápida mesmo com pouca luz",
+      "Controle individual de permissões por sala",
+    ],
+  },
+  {
+    id: "biometria",
+    name: "Biometria Digital",
+    badge: "Alta Confiabilidade",
+    tagline: "Elimine chaves e tags físicas",
+    description:
+      "Acesso seguro por impressão digital integrado ao sistema de segurança central, eliminando perdas de chaves ou esquecimento de cartões.",
+    iconName: "Fingerprint",
+    features: [
+      "Sem necessidade de chaves mecânicas",
+      "Registro de auditoria em tempo real",
+      "Operação redundante 24/7",
+    ],
+  },
+  {
+    id: "qr-code",
+    name: "QR Code para Clientes",
+    badge: "Convite via WhatsApp",
+    tagline: "Recepção ágil e sem filas",
+    description:
+      "Gere links com QR Code de acesso temporário e envie para seu paciente ou cliente antes da consulta para entrada imediata pelo totem.",
+    iconName: "QrCode",
+    features: [
+      "Envio direto pelo WhatsApp com 1 clique",
+      "Validade e horário programados",
+      "Notificação instantânea quando o cliente chega",
+    ],
   },
 ];
 
@@ -116,28 +185,28 @@ export const vipCastInfo: VipCastStudioInfo = {
   title: "Estúdio Vip Cast Ituiutaba",
   tagline: "O estúdio de gravação mais moderno do Triângulo Mineiro",
   description:
-    "Grave seus podcasts, videocasts, entrevistas institucionais e aulas online em um ambiente com tratamento acústico de ponta e tecnologia de ponta.",
+    "Ambiente acústico profissional de alto nível, projetado para que profissionais da saúde, advogados, consultores e marcas gravem conteúdos de altíssima autoridade digital.",
   equipment: [
     "Câmeras 4K Sony com lentes cinematográficas",
-    "Microfones Shure SM7B e Rode Procaster",
-    "Mesa de som e interface Rodecaster Pro II",
-    "Iluminação profissional RGB e Keylights dimerizáveis",
-    "Cenários modulares com LED personalizável",
-    "Operador técnico e edição pós-produção disponíveis",
+    "Microfones broadcast Shure SM7B e Rode",
+    "Mesa de som e interface de áudio Rodecaster Pro II",
+    "Iluminação profissional dimerizável em LED e RGB",
+    "Cenários modulares com LED e painel acústico em madeira",
+    "Suporte de operador técnico e pós-produção",
   ],
   differentials: [
     "Isolamento acústico com laudos técnicos",
     "Transmissão ao vivo simultânea (YouTube, Instagram, LinkedIn)",
     "Climatização silenciosa inverter",
-    "Ambiente lounge e camarim de apoio",
+    "Condições e descontos exclusivos para condôminos do Espaço VIP",
   ],
   formatsSupported: [
     "Podcasts & Videocasts",
     "Entrevistas Corporativas & Lançamentos",
     "Gravação de Cursos e Treinamentos",
-    "Webinars & Lives Profissionais",
+    "Reels, Shorts e Pílulas de Conteúdo",
   ],
-  images: ["/images/vipcast/studio-1.jpg", "/images/vipcast/studio-2.jpg"],
+  images: ["/images/vipcast-studio.jpg"],
   bookingWhatsappMessage:
     "Olá! Gostaria de agendar um horário para gravação no Estúdio Vip Cast.",
 };
@@ -199,7 +268,7 @@ export const faqItems: FaqItem[] = [
     id: "faq-2",
     question: "Como posso agendar o Estúdio Vip Cast?",
     answer:
-      "O agendamento do Estúdio Vip Cast pode ser realizado por diárias ou pacotes de horas diretamente pelo WhatsApp da administração do Espaço VIP, com opções incluindo ou não operador e edição.",
+      "O agendamento do Estúdio Vip Cast pode ser realizado por diárias ou pacotes de horas diretamente pelo WhatsApp da administração do Espaço VIP, com opções incluindo ou não operador e edição. Condôminos têm tarifas especiais.",
     category: "vipcast",
   },
   {
@@ -213,7 +282,7 @@ export const faqItems: FaqItem[] = [
     id: "faq-4",
     question: "Existem opções de salas disponíveis para locação imediata?",
     answer:
-      "Sim, temos unidades disponíveis com metragens variadas (de 35m² a 150m²), preparadas tanto para consultórios da área da saúde quanto para escritórios corporativos. Entre em contato conosco para agendar uma visita guiada.",
+      "Sim, temos unidades disponíveis com metragens variadas, preparadas tanto para consultórios da área da saúde quanto para escritórios corporativos. Entre em contato conosco para agendar uma visita guiada.",
     category: "locacao",
   },
 ];
