@@ -1,26 +1,166 @@
 @import "tailwindcss";
+@config "../../tailwind.config.ts";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #070a10;
+  --foreground: #f8fafc;
+  --card-bg: #0d131f;
+  --card-surface: #121a2b;
+  --gold-primary: #c6a87d;
+  --gold-light: #e9dcbf;
+  --gold-dark: #94763c;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-gold: rgba(198, 168, 125, 0.3);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-gold-50: #FAF7F2;
+  --color-gold-100: #F4EFE4;
+  --color-gold-200: #E9DCBF;
+  --color-gold-300: #DEC79A;
+  --color-gold-400: #D4AF37;
+  --color-gold-500: #C6A87D;
+  --color-gold-600: #B39255;
+  --color-gold-700: #94763C;
+  --color-gold-800: #6B542B;
+  --color-gold-900: #3D2F18;
+  --color-gold-950: #221A0C;
+
+  --color-vip-gold: #C6A87D;
+  --color-vip-gold-light: #E9DCBF;
+  --color-vip-gold-dark: #94763C;
+  
+  --color-dark-base: #070A10;
+  --color-dark-card: #0D131F;
+  --color-dark-surface: #121A2B;
+  --color-dark-hover: #18233A;
+  --color-dark-border: #1E2C46;
+  --color-dark-muted: #334155;
+
+  --color-tech-cyan: #0EA5E9;
+  --color-tech-emerald: #10B981;
+  --color-tech-purple: #8B5CF6;
+
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-heading: var(--font-heading), Georgia, serif;
+  --font-montserrat: var(--font-montserrat), sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: rgba(198, 168, 125, 0.3);
+  color: #ffffff;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070a10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e2c46;
+  border-radius: 4px;
+  border: 1px solid rgba(198, 168, 125, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c6a87d;
+}
+
+/* Utilitários de Design & Tipografia */
+@layer utilities {
+  /* Gradientes de Texto */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #ffffff 0%, #e9dcbf 30%, #c6a87d 70%, #94763c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-gold-pure {
+    background: linear-gradient(135deg, #f4efe4 0%, #c6a87d 50%, #94763c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-silver {
+    background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #64748b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Efeitos Glassmorphism */
+  .glass-card {
+    background: linear-gradient(180deg, rgba(18, 26, 43, 0.7) 0%, rgba(13, 19, 31, 0.85) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .glass-card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card-hover:hover {
+    border-color: rgba(198, 168, 125, 0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(198, 168, 125, 0.15);
+  }
+
+  .glass-panel {
+    background: rgba(13, 19, 31, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Glow e Bordas Sofisticadas */
+  .gold-glow {
+    box-shadow: 0 0 25px -5px rgba(198, 168, 125, 0.25);
+  }
+
+  .gold-border-glow {
+    position: relative;
+  }
+
+  .gold-border-glow::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(135deg, rgba(198, 168, 125, 0.4), transparent 60%);
+    border-radius: inherit;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Gradiente de Fundo Decorativo */
+  .bg-radial-gradient {
+    background: radial-gradient(circle at 50% 0%, rgba(198, 168, 125, 0.08) 0%, transparent 70%);
+  }
+
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  }
 }
