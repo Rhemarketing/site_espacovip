@@ -172,6 +172,26 @@ export default async function Home({
                 ESPAÇO VIP ITUIUTABA
               </span>
             </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-6 text-slate-400">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#C6A87D] transition-colors"
+              >
+                WhatsApp: {siteConfig.contact.whatsappFormatted}
+              </a>
+              <a
+                href={siteConfig.contact.socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#E1306C] transition-colors"
+              >
+                {siteConfig.contact.socials.instagramHandle}
+              </a>
+            </div>
+
             <p>© {new Date().getFullYear()} Todos os direitos reservados. Edifício Corporativo e de Saúde.</p>
           </div>
         </Container>

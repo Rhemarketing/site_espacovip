@@ -2,6 +2,24 @@ import React from "react";
 import { Sparkles, MessageCircle, MapPin, Building2, Clock } from "lucide-react";
 import { siteConfig } from "@/data/site-data";
 
+function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
 export function EmDesenvolvimento() {
   const whatsappUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(
     "Olá! Gostaria de mais informações sobre o Espaço VIP."
@@ -44,22 +62,34 @@ export function EmDesenvolvimento() {
           Estamos preparando uma experiência digital inovadora para você. Em breve, nosso novo site estará no ar.
         </p>
 
-        {/* Card Informativo com Botão de Contato */}
+        {/* Card Informativo com Botão de Contato e Instagram */}
         <div className="w-full bg-[#0E1525]/70 border border-white/10 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl shadow-black/50 mb-8 flex flex-col items-center gap-5">
           <div className="flex items-center gap-2 text-slate-400 text-xs sm:text-sm">
             <Clock className="w-4 h-4 text-[#C6A87D]" />
             <span>Atendimento comercial em funcionamento</span>
           </div>
 
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#C6A87D] via-[#D4B98D] to-[#B39366] text-[#070A10] font-semibold text-sm shadow-lg shadow-[#C6A87D]/20 hover:shadow-[#C6A87D]/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-          >
-            <MessageCircle className="w-4 h-4 fill-current" />
-            <span>Falar no WhatsApp</span>
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#C6A87D] via-[#D4B98D] to-[#B39366] text-[#070A10] font-semibold text-sm shadow-lg shadow-[#C6A87D]/20 hover:shadow-[#C6A87D]/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            >
+              <MessageCircle className="w-4 h-4 fill-current" />
+              <span>WhatsApp: +55 34 9873-0044</span>
+            </a>
+
+            <a
+              href={siteConfig.contact.socials.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 hover:border-[#C6A87D]/40 text-slate-200 hover:text-white font-medium text-sm transition-all duration-200"
+            >
+              <InstagramIcon className="w-4 h-4 text-[#E1306C]" />
+              <span>@espacovipituiutaba</span>
+            </a>
+          </div>
         </div>
 
         {/* Rodapé / Localização */}

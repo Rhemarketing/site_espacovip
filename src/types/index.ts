@@ -148,6 +148,7 @@ export interface ContactInfo {
   };
   socials: {
     instagram?: string;
+    instagramHandle?: string;
     facebook?: string;
     linkedin?: string;
     youtube?: string;

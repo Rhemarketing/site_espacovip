@@ -32,10 +32,10 @@ export const siteConfig: SiteConfig = {
       zipCode: "38300-000",
       reference: "Localização nobre e estratégica no coração comercial da cidade",
     },
-    phone: "34999999999",
-    phoneFormatted: "(34) 99999-9999",
-    whatsapp: "5534999999999",
-    whatsappFormatted: "(34) 99999-9999",
+    phone: "3498730044",
+    phoneFormatted: "(34) 9873-0044",
+    whatsapp: "553498730044",
+    whatsappFormatted: "+55 34 9873-0044",
     defaultWhatsappMessage:
       "Olá! Gostaria de saber mais sobre as salas e serviços do Espaço VIP Ituiutaba.",
     email: "contato@espacovipituiutaba.com.br",
@@ -46,6 +46,7 @@ export const siteConfig: SiteConfig = {
     },
     socials: {
       instagram: "https://instagram.com/espacovipituiutaba",
+      instagramHandle: "@espacovipituiutaba",
       facebook: "https://facebook.com/espacovipituiutaba",
       youtube: "https://youtube.com/@espacovipituiutaba",
     },
