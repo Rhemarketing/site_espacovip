@@ -1,7 +1,9 @@
+import { headers } from "next/headers";
 import { Header } from "@/components/sections/header";
 import { HeroSection } from "@/components/sections/hero-section";
 import { InfrastructureSection } from "@/components/sections/infrastructure-section";
 import { TechnologySection } from "@/components/sections/technology-section";
+import { EmDesenvolvimento } from "@/components/sections/em-desenvolvimento";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -17,7 +19,40 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/data/site-data";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: Promise<{ preview?: string }> | { preview?: string };
+}) {
+  const headersList = await headers();
+  const host = (
+    headersList.get("x-forwarded-host") ||
+    headersList.get("host") ||
+    ""
+  ).toLowerCase();
+
+  const resolvedParams =
+    searchParams instanceof Promise ? await searchParams : searchParams;
+  const isExplicitPreview =
+    resolvedParams?.preview === "true" || resolvedParams?.preview === "1";
+  const isExplicitMaintenance =
+    resolvedParams?.preview === "false" || resolvedParams?.preview === "0";
+
+  // Identifica domínios de desenvolvimento / teste (localhost e Easypanel)
+  const isPreviewHost =
+    !isExplicitMaintenance &&
+    (host.includes("localhost") ||
+      host.includes("127.0.0.1") ||
+      host.includes("easypanel.host") ||
+      isExplicitPreview);
+
+  // Quando acessado por domínio público (como espacovip.com.br ou espacovipituiutaba.com.br), exibe página Em Desenvolvimento
+  if (!isPreviewHost) {
+    return <EmDesenvolvimento />;
+  }
+
   const whatsappUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(
     siteConfig.contact.defaultWhatsappMessage
   )}`;
