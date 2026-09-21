@@ -141,21 +141,21 @@ export function HeroSection() {
 
           {/* Botões de Ação */}
           <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3.5 sm:gap-4 w-full sm:w-auto">
-            {/* Botão Reservar Sala: cor #6E6D35, texto e ícone aumentados em 1.5x no mobile */}
+            {/* Botão Reservar Sala: 75% da largura da tela no mobile (w-[75vw]), sm:w-auto no desktop */}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-[50vw] sm:w-auto inline-flex items-center justify-center gap-2.5 px-3 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-[#6E6D35] text-[#FFFAF1] font-semibold text-lg sm:text-base shadow-lg shadow-[#6E6D35]/25 hover:bg-[#5b5a2c] hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 whitespace-nowrap"
+              className="w-[75vw] sm:w-auto inline-flex items-center justify-center gap-2.5 px-3 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-[#6E6D35] text-[#FFFAF1] font-semibold text-lg sm:text-base shadow-lg shadow-[#6E6D35]/25 hover:bg-[#5b5a2c] hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 whitespace-nowrap"
             >
               <WhatsAppIcon className="w-6 h-6 sm:w-5 sm:h-5 shrink-0" />
               <span>Reservar Sala</span>
             </a>
 
-            {/* Botão Profissionais: fundo #FFFAF1, borda #fff7f1 */}
+            {/* Botão Profissionais: 75% da largura da tela no mobile (w-[75vw]), sm:w-auto no desktop */}
             <Link
               href="#profissionais"
-              className="w-[50vw] sm:w-auto inline-flex items-center justify-center px-3 py-3.5 sm:px-8 sm:py-4 rounded-xl border-2 border-[#fff7f1] text-[#755036] bg-[#FFFAF1] font-semibold text-lg sm:text-base hover:bg-[#755036] hover:text-[#FFFAF1] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 whitespace-nowrap shadow-sm"
+              className="w-[75vw] sm:w-auto inline-flex items-center justify-center px-3 py-3.5 sm:px-8 sm:py-4 rounded-xl border-2 border-[#fff7f1] text-[#755036] bg-[#FFFAF1] font-semibold text-lg sm:text-base hover:bg-[#755036] hover:text-[#FFFAF1] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 whitespace-nowrap shadow-sm"
             >
               <span>Profissionais</span>
             </Link>
