@@ -1,245 +1,109 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import {
-  Sparkles,
-  ArrowRight,
-  ShieldCheck,
-  Building2,
-  Mic,
-  MapPin,
-  CheckCircle2,
-  CalendarCheck,
-  Users2,
-  ChevronDown,
-} from "lucide-react";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { siteConfig } from "@/data/site-data";
+import { MessageCircle, Users } from "lucide-react";
 
-interface HighlightCardProps {
-  icon: React.ElementType;
-  title: string;
-  subtitle: string;
-  tag: string;
-}
-
-const keyHighlights: HighlightCardProps[] = [
-  {
-    icon: Building2,
-    title: "20 Salas Exclusivas",
-    subtitle: "2 andares planejados para saúde e negócios",
-    tag: "Plantas Flexíveis",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Portaria Digital 24/7",
-    subtitle: "Face ID, biometria e recepção automatizada",
-    tag: "Alta Tecnologia",
-  },
-  {
-    icon: Mic,
-    title: "Estúdio Vip Cast",
-    subtitle: "Gravação profissional de podcasts e videocasts",
-    tag: "Audiovisual 4K",
-  },
-  {
-    icon: MapPin,
-    title: "Localização Nobre",
-    subtitle: "Ponto nobre e estratégico no centro da cidade",
-    tag: "Fácil Acesso",
-  },
+const SALAS_IMAGES = [
+  "/images/salas/1.jpg",
+  "/images/salas/2.jpg",
+  "/images/salas/3 (1).png",
+  "/images/salas/4.jpg",
 ];
 
 export function HeroSection() {
-  const whatsappUrl = `https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(
-    "Olá! Gostaria de agendar uma visita e conhecer as salas disponíveis no Espaço VIP Ituiutaba."
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % SALAS_IMAGES.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const whatsappUrl = `https://wa.me/5534998730044?text=${encodeURIComponent(
+    "Olá! Gostaria de mais informações para reservar uma sala no Espaço VIP."
   )}`;
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-      {/* Luz ambiente e gradientes de fundo */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[450px] bg-gradient-to-b from-[#C6A87D]/20 via-[#C6A87D]/5 to-transparent blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/3 left-10 w-72 h-72 bg-[#0EA5E9]/10 blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/2 right-10 w-80 h-80 bg-[#10B981]/10 blur-[120px] pointer-events-none" />
-
-      <Container className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Coluna de Texto & Copywriting */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Badge de Destaque Superior */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-[#C6A87D]/30 mb-6 gold-glow animate-fade-in">
-              <Sparkles className="w-4 h-4 text-[#C6A87D]" />
-              <span className="text-xs font-semibold tracking-wide uppercase text-[#E9DCBF] font-montserrat">
-                O Centro de Negócios e Saúde Mais Moderno de Ituiutaba
-              </span>
+    <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[680px] bg-[#755036] py-16 sm:py-24 md:py-28 lg:py-32 overflow-hidden flex items-center">
+      {/* SLIDESHOW DE IMAGENS */}
+      {/* Mobile/Tablet: ocupa todo o fundo com 50% de opacidade na imagem ativa */}
+      {/* Desktop (lg): posicionado no lado direito */}
+      <div className="absolute inset-0 lg:left-[45%] lg:w-[55%] pointer-events-none overflow-hidden z-0">
+        {SALAS_IMAGES.map((src, index) => {
+          const isActive = index === currentIndex;
+          return (
+            <div
+              key={src}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                isActive ? "opacity-50 lg:opacity-100" : "opacity-0"
+              }`}
+            >
+              <Image
+                src={src}
+                alt={`Sala comercial Espaço VIP ${index + 1}`}
+                fill
+                priority={index === 0}
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 55vw"
+              />
             </div>
+          );
+        })}
+      </div>
 
-            {/* H1 Principal com Gradiente Dourado */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight font-heading leading-[1.15] mb-6 text-white">
-              Eleve o Padrão do Seu Atendimento em um{" "}
-              <span className="block text-gradient-gold">
-                Endereço de Prestígio
-              </span>
-            </h1>
+      {/* OVERLAY DEGRADÊ NO DESKTOP */}
+      {/* 100% de opacidade de #755036 até 50% da largura, diminuindo suavemente até 0% no lado direito */}
+      <div
+        className="absolute inset-0 pointer-events-none hidden lg:block z-[1]"
+        style={{
+          background:
+            "linear-gradient(to right, #755036 0%, #755036 50%, rgba(117, 80, 54, 0) 100%)",
+        }}
+      />
 
-            {/* Subtítulo persuasivo */}
-            <p className="text-slate-300 text-base sm:text-lg lg:text-xl font-light leading-relaxed max-w-2xl mb-8">
-              Estrutura corporativa inteligente com <strong>20 salas</strong>, <strong>3 amplas recepções</strong>,
-              controle de acesso por <strong>Face ID</strong> e <strong>estúdio Vip Cast</strong>. O cenário ideal para
-              médicos, especialistas e empresas que valorizam sofisticação e resultados.
-            </p>
+      {/* CONTEÚDO PRINCIPAL (TÍTULO, DESCRIÇÃO E BOTÕES) */}
+      <Container className="relative z-10 w-full">
+        <div className="flex flex-col items-center sm:items-start text-center sm:text-left max-w-2xl">
+          {/* Título: "SALAS COMERCIAIS" */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#FFFAF1] font-sans leading-[1.1] mb-5">
+            <span className="block sm:inline">SALAS</span>{" "}
+            <span className="block sm:inline">COMERCIAIS</span>
+          </h1>
 
-            {/* Duplo CTA */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10">
-              <Button
-                href={whatsappUrl}
-                isExternal
-                variant="gold"
-                size="lg"
-                rightIcon={<ArrowRight className="w-5 h-5" />}
-                className="w-full sm:w-auto justify-center"
-              >
-                Agendar Visita / Quero meu Espaço
-              </Button>
+          {/* Descrição */}
+          <p className="text-lg sm:text-xl md:text-2xl text-[#EDDCC8] font-medium tracking-wide mb-8 sm:mb-10 max-w-xl">
+            Conforto, tecnologia e segurança
+          </p>
 
-              <Button
-                href="#profissionais"
-                variant="outline"
-                size="lg"
-                leftIcon={<Users2 className="w-4 h-4 text-[#C6A87D]" />}
-                className="w-full sm:w-auto justify-center"
-              >
-                Conhecer Especialistas
-              </Button>
-            </div>
+          {/* Botões de Ação */}
+          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-4 w-full sm:w-auto">
+            {/* Botão Reservar Sala */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#FFFAF1] text-[#755036] font-bold text-base shadow-xl shadow-black/20 hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            >
+              <MessageCircle className="w-5 h-5 text-[#755036]" />
+              <span>Reservar Sala</span>
+            </a>
 
-            {/* Trust Proof / Micro Informações */}
-            <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-white/10 w-full text-xs sm:text-sm text-slate-400">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#10B981]" />
-                <span>Salas prontas para consultórios e escritórios</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-[#10B981]" />
-                <span>Atendimento exclusivo com hora marcada</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Coluna Visual: Mockup de Arquitetura & Cards Flutuantes */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Moldura de Vidro e Brilho */}
-              <div className="relative rounded-3xl p-2 sm:p-3 glass-panel border border-[#C6A87D]/30 gold-border-glow shadow-2xl overflow-hidden group">
-                <div className="relative aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden bg-[#0D131F]">
-                  <Image
-                    src="/images/hero-building.jpg"
-                    alt="Fachada imponente do Edifício Espaço VIP Ituiutaba"
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Gradiente de overlay sofisticado */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#070A10]/90 via-[#070A10]/20 to-transparent" />
-
-                  {/* Legenda do Edifício no rodapé da foto */}
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                    <div>
-                      <span className="text-[10px] font-montserrat uppercase tracking-wider text-[#C6A87D] font-bold block">
-                        Complexo Corporativo & Médico
-                      </span>
-                      <h4 className="text-white text-base font-bold font-heading drop-shadow">
-                        Edifício Espaço VIP
-                      </h4>
-                    </div>
-                    <Badge variant="emerald" size="sm" pulseDot>
-                      Acesso Ativo
-                    </Badge>
-                  </div>
-                </div>
-
-                {/* Badge Flutuante 1 (Top Right): Portaria Digital */}
-                <div className="absolute -top-3 -right-3 hidden sm:flex items-center gap-2.5 px-4 py-2.5 rounded-2xl glass-card border border-[#10B981]/40 shadow-xl backdrop-blur-xl animate-float-slow">
-                  <div className="w-8 h-8 rounded-lg bg-[#10B981]/15 border border-[#10B981]/30 flex items-center justify-center text-[#10B981]">
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-semibold text-slate-400 block uppercase font-montserrat">
-                      Portaria 24h
-                    </span>
-                    <span className="text-xs font-bold text-white">
-                      Face ID & Totem
-                    </span>
-                  </div>
-                </div>
-
-                {/* Badge Flutuante 2 (Bottom Left): Estúdio Vip Cast */}
-                <div className="absolute -bottom-3 -left-3 hidden sm:flex items-center gap-2.5 px-4 py-2.5 rounded-2xl glass-card border border-[#C6A87D]/40 shadow-xl backdrop-blur-xl">
-                  <div className="w-8 h-8 rounded-lg bg-[#C6A87D]/15 border border-[#C6A87D]/30 flex items-center justify-center text-[#C6A87D]">
-                    <Mic className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-semibold text-slate-400 block uppercase font-montserrat">
-                      Exclusividade
-                    </span>
-                    <span className="text-xs font-bold text-white">
-                      Estúdio Vip Cast 4K
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Grid de 4 Micro-Cards (Key Highlights) */}
-        <div className="mt-16 sm:mt-24 pt-10 border-t border-white/10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {keyHighlights.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={idx}
-                  className="glass-card glass-card-hover rounded-2xl p-5 border border-white/10 flex flex-col justify-between"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#070A10] border border-[#C6A87D]/30 flex items-center justify-center text-[#C6A87D]">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <Badge variant="gold" size="sm">
-                      {item.tag}
-                    </Badge>
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-white mb-1 font-heading">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-slate-400 leading-relaxed font-light">
-                      {item.subtitle}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+            {/* Botão Profissionais */}
+            <Link
+              href="#profissionais"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl border-2 border-[#FFFAF1] text-[#FFFAF1] bg-transparent font-semibold text-base hover:bg-[#FFFAF1] hover:text-[#755036] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            >
+              <Users className="w-5 h-5" />
+              <span>Profissionais</span>
+            </Link>
           </div>
         </div>
       </Container>
-
-      {/* Indicador sutil de rolagem */}
-      <div className="flex justify-center mt-12">
-        <a
-          href="#nosso-espaco"
-          className="flex flex-col items-center gap-1.5 text-xs text-slate-400 hover:text-[#C6A87D] transition-colors group"
-          aria-label="Rolar para a seção O Espaço"
-        >
-          <span className="tracking-widest uppercase text-[10px] font-montserrat opacity-75">
-            Descubra o Complexo
-          </span>
-          <ChevronDown className="w-4 h-4 text-[#C6A87D] animate-bounce" />
-        </a>
-      </div>
     </section>
   );
 }
