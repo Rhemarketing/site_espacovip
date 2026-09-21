@@ -38,7 +38,7 @@ export default async function Home({
   }
 
   return (
-    <div className="min-h-screen bg-[#755036] flex flex-col selection:bg-[#FFFAF1]/30 selection:text-white">
+    <div className="min-h-screen bg-[#FFFAF1] flex flex-col selection:bg-[#755036]/20 selection:text-[#755036]">
       {/* Header com logo primária centralizada */}
       <Header />
 
