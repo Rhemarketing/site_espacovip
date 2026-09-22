@@ -2,6 +2,9 @@ import { headers } from "next/headers";
 import { Header } from "@/components/sections/header";
 import { HeroSection } from "@/components/sections/hero-section";
 import { VideoSection } from "@/components/sections/video-section";
+import { ProfessionalsSection } from "@/components/sections/profissionais-section";
+import { QuoteSection } from "@/components/sections/quote-section";
+import { Footer } from "@/components/sections/footer";
 import { EmDesenvolvimento } from "@/components/sections/em-desenvolvimento";
 
 export const dynamic = "force-dynamic";
@@ -50,9 +53,15 @@ export default async function Home({
         {/* Segunda Seção: Vídeo Institucional */}
         <VideoSection />
 
-        {/* Âncora para a futura seção Profissionais */}
-        <div id="profissionais" className="scroll-mt-10" />
+        {/* Terceira Seção: Cards dos Profissionais & Empresas (2 por linha) */}
+        <ProfessionalsSection />
+
+        {/* Quarta Seção: Frase de Impacto */}
+        <QuoteSection />
       </main>
+
+      {/* Rodapé: Diretório de Profissionais, Contatos, Instagram & Endereço */}
+      <Footer />
     </div>
   );
 }
