@@ -45,7 +45,7 @@ export function HeroSection() {
   )}`;
 
   return (
-    <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[680px] bg-[#FFFAF1] pb-14 sm:py-24 md:py-28 lg:py-32 overflow-hidden flex items-center">
+    <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-0 lg:h-[550px] lg:max-h-[550px] bg-[#FFFAF1] pb-14 sm:py-20 md:py-24 lg:py-12 overflow-hidden flex items-center">
       {/* ======================================================== */}
       {/* VERSÃO MOBILE: Imagens em 5:4 no topo com degradê vertical */}
       {/* ======================================================== */}

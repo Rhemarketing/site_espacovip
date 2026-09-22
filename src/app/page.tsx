@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import { Header } from "@/components/sections/header";
 import { HeroSection } from "@/components/sections/hero-section";
+import { VideoSection } from "@/components/sections/video-section";
 import { EmDesenvolvimento } from "@/components/sections/em-desenvolvimento";
 
 export const dynamic = "force-dynamic";
@@ -45,6 +46,9 @@ export default async function Home({
       {/* Hero Section */}
       <main className="flex-1 flex flex-col">
         <HeroSection />
+
+        {/* Segunda Seção: Vídeo Institucional */}
+        <VideoSection />
 
         {/* Âncora para a futura seção Profissionais */}
         <div id="profissionais" className="scroll-mt-10" />
