@@ -117,6 +117,45 @@ export function HeroSection() {
       />
 
       {/* ======================================================== */}
+      {/* LINHAS ANIMADAS EM MOVIMENTO NO BACKGROUND #FFFAF1 */}
+      {/* ======================================================== */}
+      {/* Linhas para Mobile (animadas, 50% mais transparente, opacidade diminui antes da transição da cor) */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[2] lg:hidden animate-hero-lines opacity-50"
+        style={{
+          backgroundImage: `
+            repeating-linear-gradient(
+              -45deg,
+              rgba(117, 80, 54, 0.08) 0px,
+              rgba(117, 80, 54, 0.08) 1.5px,
+              transparent 1.5px,
+              transparent 22.6274px
+            )
+          `,
+          maskImage: "linear-gradient(to top, black 0%, black 20%, transparent 45%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to top, black 0%, black 20%, transparent 45%, transparent 100%)",
+        }}
+      />
+
+      {/* Linhas para Desktop (animadas, opacidade diminui antes de 50%, antes da cor desvanecer na foto) */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[2] hidden lg:block animate-hero-lines"
+        style={{
+          backgroundImage: `
+            repeating-linear-gradient(
+              -45deg,
+              rgba(117, 80, 54, 0.08) 0px,
+              rgba(117, 80, 54, 0.08) 1.5px,
+              transparent 1.5px,
+              transparent 22.6274px
+            )
+          `,
+          maskImage: "linear-gradient(to right, black 0%, black 25%, transparent 46%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to right, black 0%, black 25%, transparent 46%, transparent 100%)",
+        }}
+      />
+
+      {/* ======================================================== */}
       {/* CONTEÚDO PRINCIPAL (TÍTULO, DESCRIÇÃO E BOTÕES) */}
       {/* ======================================================== */}
       <Container className="relative z-10 w-full">
